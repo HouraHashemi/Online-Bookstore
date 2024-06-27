@@ -8,7 +8,7 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),  
     path('book_list_have_access/', views.book_list_have_access, name='book_list_have_access'),  
     path('logout/', views.logout_view, name='logout'),  
-    path('search/', views.search_books, name='search_books'),
+    path('search/', views.search_books_view, name='search_books'),
 
     path('add-to-cart/', views.add_to_cart, name='add_to_cart'),
     path('remove-from-cart/', views.remove_from_cart, name='remove_from_cart'),

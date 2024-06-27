@@ -20,6 +20,7 @@ nav {
     display: flex;
     flex-direction: column; /* Stack items vertically */
     margin: 10px;
+    min-width: 200px;
 }
 
 nav h2 {
@@ -101,5 +102,4 @@ p {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
-    min-width: 200px; 
 }

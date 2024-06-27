@@ -12,10 +12,18 @@
     <header>
         <h1>Bookstore</h1>
         <h4>Sample DTL Project. Powered by Django Framework.</h4>
+        <hr>
+        <div class="search-container">
+            <form method="GET" action="{% url 'search_books' %}">
+                <input type="text" name="q" placeholder="Search Book">
+                <input type="submit" value="Search"></input>
 
+            </form>
+        </div>
     </header>
 
     <main>
+        
         {% block content %}{% endblock %}
     </main>
 

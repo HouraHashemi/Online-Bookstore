@@ -19,6 +19,13 @@
         <nav>
             <h2>Cart Contents</h2>
             <a href="{% url 'book_list_have_access' %}"><button>Book List</button></a>
+            <a href="{% url 'view_orders' %}"><button>View Orders</button></a>
+            <hr>
+            <a><form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+            </a>
         </nav>
     {% if cart_items %}
     <div class="cont">

@@ -197,3 +197,22 @@ def search_books(request):
 def logout_view(request):
     logout(request)
     return redirect('book_list')
+
+
+
+def search_books_view(request):
+    query = request.GET.get('q')
+    if query:
+        results = Book.objects.filter(title__icontains=query)  # You can adjust the filter as needed
+    else:
+        results = None  # Return an empty queryset if no query
+
+    cart = Cart.objects.get(user=request.user)
+    cart_items = cart.items.all()
+
+    context = {
+        'books': results,
+        'cart_items': cart_items,
+    }
+
+    return render(request, 'search_results.html', context)
