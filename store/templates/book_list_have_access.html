@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Book List - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+    <main>
+        <nav>
+            <h2>Book List</h2> 
+            <a><form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+            </a>
+            <a href="{% url 'view_cart' %}"><button>View Cart</button></a>
+            <a href="{% url 'view_orders' %}"><button>View Orders</button></a>
+        </nav>
+        <ul>
+            {% for book in books %}
+                <li>
+                    {% if book.cover_image %}
+                        <img src="{{ book.cover_image.url }}" alt="{{ book.title }} Cover Image" style="max-width: 100px;">
+                    {% endif %}
+                    <div>
+                        <h3>{{ book.title }} by {{ book.author }}</h3>
+                        <h6>{{ book.description }}</h6> <!-- Add class for price box -->
+                    </div>
+                    <div>
+                    <form action="{% url 'add_to_cart' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="book_id" value="{{ book.id }}">
+                        <button type="submit">+</button>
+                    </form>
+                    <span class="quantity">
+
+                        {% for item in cart_items %}
+                            {% if item.book == book %}
+                                {{ item.quantity }}
+                            {% endif %}
+                        {% endfor %}
+                    </span>
+                    <form action="{% url 'remove_from_cart' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="book_id" value="{{ book.id }}">
+                        <button type="submit" {% if book.quantity_in_cart == 0 %}disabled{% endif %}>-</button>
+                    </form>
+                    <p class="price">${{ book.price }}</p> <!-- Add class for price box -->
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </main>
+    <link rel="stylesheet" href="{% static 'book_list_have_access_style.css' %}?v={{ time }}">
+
+
+{% endblock %}
+
+

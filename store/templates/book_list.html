@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Book List - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <main>
+    
+        <nav>
+            <h2>Book List</h2> 
+            <a href="{% url 'signup' %}"><button>Sign Up</button></a>
+            <a href="{% url 'login' %}"><button>Login</button></a>
+        </nav>
+        <ul>
+            {% for book in books %}
+                <li>
+                    {% if book.cover_image %}
+                        <img src="{{ book.cover_image.url }}" alt="{{ book.title }} Cover Image" style="max-width: 100px;">
+                    {% endif %}
+                    <div>
+                        <h3>{{ book.title }} by {{ book.author }}</h3>
+                        <p class="price">${{ book.price }}</p> 
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </main>
+    <link rel="stylesheet" href="{% static 'book_list_style.css' %}?v={{ time }}">
+
+{% endblock %}

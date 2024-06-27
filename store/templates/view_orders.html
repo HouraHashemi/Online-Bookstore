@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Book List - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Orders</title>
+</head>
+<body>
+    <main>
+
+    <nav>
+        <h2>Submited Orders</h2>
+        <a href="{% url 'book_list_have_access' %}"><button>Book List</button></a>    
+    </nav>
+    {% if orders %}
+    <div>
+        <ul>
+        {% for order in orders %}
+            <li>
+                User: {{ order.user.username }}<br>
+                Total Price: ${{ order.total_price }}<br>
+                Created At: {{ order.created_at }}<br>
+                <ul>
+                {% for order_item in order.items.all %}
+                    {% if order_item.book.cover_image %}
+                        <img src="{{ order_item.book.cover_image.url }}" alt="{{ order_item.book.title }} Cover Image" style="max-width: 30px;">
+                    {% endif %}
+                    <li>
+                        <div>
+                            <div>-- {{ order_item.quantity }} x {{ order_item.book.title }}</div>
+                            <div>-- ${{ order_item.price }}</div>
+                        </div>
+                    </li>
+                 
+                {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+    <div>
+        <p>You have no orders yet.</p>
+    </div>
+    {% endif %}
+    </div>
+    </main>
+</body>
+<link rel="stylesheet" href="{% static 'view_orders_style.css' %}?v={{ time }}">
+
+</html>
+{% endblock %}

@@ -1,0 +1,58 @@
+/* Static CSS for Login Page */
+
+/* Import base styles */
+@import url('base.css');
+
+/* Container styles */
+.container {
+    width: 100%;
+    max-width: 400px; /* Set maximum width for the container */
+    margin: 50px auto; /* Center the container horizontally and add margin from the top */
+    padding: 20px; /* Add padding from the sides */
+    box-sizing: border-box; /* Include padding in width calculation */
+    text-align: center; /* Center content horizontally */
+    background-color: lightsteelblue; /* Cream color for the container */
+    border-radius: 10px; /* Add border radius */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add box shadow */
+    margin-top: 200px;
+}
+
+/* Main styles */
+h2 {
+    margin-bottom: 20px; /* Add spacing below the heading */
+}
+
+form {
+    padding: 20px;
+    text-align: left; /* Align form elements to the left */
+}
+
+label {
+    display: block; /* Display labels as block for better spacing */
+    margin-bottom: 10px; /* Add spacing below labels */
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%; /* Full width for input fields */
+    padding: 10px;
+    margin-bottom: 20px; /* Add spacing below input fields */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #555;
+}

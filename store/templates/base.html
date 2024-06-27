@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Bookstore{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'base_style.css' %}?v={{ time }}">
+
+</head>
+<body>
+    <header>
+        <h1>Bookstore</h1>
+        <h4>Sample DTL Project. Powered by Django Framework.</h4>
+
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <!-- Footer content -->
+    </footer>
+</body>
+</html>
+

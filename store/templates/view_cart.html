@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Book List - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Cart</title>
+
+</head>
+<body>
+    <main>
+        <nav>
+            <h2>Cart Contents</h2>
+            <a href="{% url 'book_list_have_access' %}"><button>Book List</button></a>
+        </nav>
+    {% if cart_items %}
+    <div class="cont">
+        <ul>
+        {% for item in cart_items %}
+            <li>
+                {% if item.book.cover_image %}
+                <img src="{{ item.book.cover_image.url }}" alt="{{ item.book.title }} Cover Image" style="max-width: 100px;">
+                {% endif %}
+                <div>
+                    <div>-- {{ item.quantity }} x {{ item.book.title }}</div>
+                    <div>-- ${{ item.book.price }}</div>
+                </div>
+            </li>
+        {% endfor %}
+        </ul>
+        <div class="submit-orders">
+            <p>Total Price: ${{ total_price }}</p>           
+            <form action="{% url 'order_submission' %}" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Submit Order">
+            </form>
+        </div>
+    </div>
+    {% else %}
+    <div>
+        <p>Your cart is empty.</p>
+    </div>
+    {% endif %}
+    </main>
+    <link rel="stylesheet" href="{% static 'view_cart_style.css' %}?v={{ time }}">
+
+</body>
+</html>
+{% endblock %}
+
+
+
